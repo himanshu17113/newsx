@@ -21,6 +21,7 @@ class VerticalNews extends StatelessWidget {
           final sortedArticles = cardController.generalNews..sort((a, b) => b.publishedAt!.compareTo(a.publishedAt!));
           return sortedArticles.isNotEmpty
               ? SliverList.builder(
+                
                   //  padding: const EdgeInsets.symmetric(horizontal: 5),
                   itemCount: sortedArticles.length,
                   itemBuilder: (context, i) => sortedArticles[i].urlToImage == null

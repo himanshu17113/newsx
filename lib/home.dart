@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
     'Entertainment',
     'Technology',
     'General',
-    'Sciences',
+    'Science',
     'Health',
     'Ports'
   ];
@@ -87,7 +87,10 @@ class _HomeState extends State<Home> {
                                         GestureDetector(
                                           onTap: () {
                                             selectedCategories.value = index;
+                                            index == 0 ?  newsService.fetchEverything() :
                                             newsService.fetchCategory(categories.elementAt(index).toLowerCase());
+                                            _scrollController.animateTo(200,
+                                                duration: const Duration(milliseconds: 550), curve: Curves.ease);
                                           },
                                           child: Text(categories.elementAt(index),
                                               maxLines: 1,
