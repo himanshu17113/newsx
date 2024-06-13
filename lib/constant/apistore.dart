@@ -1,5 +1,5 @@
 class Apis {
-  static const String apikey = "0fb7a1daff27412d8a1874ebc9ba7b58";
+  static const String apikey = "8d390201de914fc8a58d0b1fe2982d08";
   //'fc1ad74921dd49dea95a761565f6e3e5';
   //"99eba290233e41f2b36d5c55d72d70bc";
   static getHeadline(final String query) => "https://newsapi.org/v2/top-headlines?q=$query&apiKey=$apikey";
