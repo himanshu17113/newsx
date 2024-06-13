@@ -32,14 +32,13 @@ class _HomeState extends State<Home> {
 
   static const List<String> categories = [
     "All",
-    "Business",
-    "Entertainment",
-    "Innovation",
-    "Culture",
-    "Health",
-    "Science",
-    "Technology",
-    "Sports",
+    'Business',
+    'Entertainment',
+    'Technology',
+    'General',
+    'Sciences',
+    'Health',
+    'Ports'
   ];
 
   @override
@@ -88,7 +87,7 @@ class _HomeState extends State<Home> {
                                         GestureDetector(
                                           onTap: () {
                                             selectedCategories.value = index;
-                                            newsService.fetchCategory(categories.elementAt(index));
+                                            newsService.fetchCategory(categories.elementAt(index).toLowerCase());
                                           },
                                           child: Text(categories.elementAt(index),
                                               maxLines: 1,

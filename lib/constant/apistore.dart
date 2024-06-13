@@ -9,5 +9,5 @@ class Apis {
       "https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=$apikey";
 
   static String getHeadLineBySource(final String category) =>
-      "https://newsapi.org/v2/top-headlines?category=$category&apiKey=$apikey";
+      "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=$apikey";
 }

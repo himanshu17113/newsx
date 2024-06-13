@@ -31,109 +31,101 @@ class MoreInfoNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              GestureDetector(onTap: () => Navigator.pop(context), child: const Icon(Icons.arrow_back_ios)),
-              MoreInfoHeader(
-                date: date ?? "",
-                source: sourceName ?? "",
-              ),
-              Text(
-                title ?? "",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                  // fontFamily: AppFont.interBold,
-                  // color: _Colors.primaryColorDark,
+    return Material(
+      child: SafeArea(
+        child: ListView(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5), children: [
+          // const Align(alignment: Alignment.centerLeft, child: BackButton()),
+          MoreInfoHeader(
+            date: date ?? "",
+            source: sourceName ?? "",
+          ),
+          Text(
+            title ?? "",
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+              // fontFamily: AppFont.interBold,
+              // color: _Colors.primaryColorDark,
+            ),
+          ),
+          const SizedBox(height: 35),
+          const Text(
+            "Description:",
+            style: TextStyle(
+              fontSize: 19,
+              fontWeight: FontWeight.w700,
+              // fontFamily: AppFont.interBold,
+              // color: _Colors.primaryColorDark,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            desc ?? "",
+            textAlign: TextAlign.justify,
+            style: const TextStyle(
+              fontSize: 14,
+              // fontFamily: AppFont.interMedium,
+            ),
+          ),
+          const SizedBox(height: 35),
+          const Text(
+            "Read News",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+              // fontFamily: AppFont.interBold,
+              // color: _Colors.primaryColorDark,
+            ),
+          ),
+          image == null
+              ? Container(
+                  margin: const EdgeInsets.only(top: 30, bottom: 20),
+                  alignment: Alignment.center,
+                  width: context.deviceWidth() / 1.2,
+                  height: context.deviceHeight() / 3,
+                  decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(20)),
+                  child: const Text("Image Preview Unavailable",
+                      style: TextStyle(
+                          fontSize: 14,
+                          // fontFamily: AppFont.interMedium,
+                          color: Colors.white)),
+                )
+              : Container(
+                  margin: const EdgeInsets.only(top: 30, bottom: 20),
+                  width: context.deviceWidth() / 1.2,
+                  height: context.deviceHeight() / 3,
+                  decoration: BoxDecoration(
+                      color: primaryColorDark,
+                      image: DecorationImage(
+                        image: NetworkImage(image!),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(20)),
                 ),
-              ),
-              const SizedBox(height: 35),
-              const Text(
-                "Description:",
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w700,
-                  // fontFamily: AppFont.interBold,
-                  // color: _Colors.primaryColorDark,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                desc ?? "",
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  fontSize: 14,
-                  // fontFamily: AppFont.interMedium,
-                ),
-              ),
-              const SizedBox(height: 35),
-              Expanded(
-                  child: ListView(
-                shrinkWrap: true,
-                children: [
-                  const Text(
-                    "Read News",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      // fontFamily: AppFont.interBold,
-                      // color: _Colors.primaryColorDark,
-                    ),
-                  ),
-                  image == null
-                      ? Container(
-                          margin: const EdgeInsets.only(top: 30, bottom: 20),
-                          alignment: Alignment.center,
-                          width: context.deviceWidth() / 1.2,
-                          height: context.deviceHeight() / 3,
-                          decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(20)),
-                          child: const Text("Image Preview Unavailable",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  // fontFamily: AppFont.interMedium,
-                                  color: Colors.white)),
-                        )
-                      : Container(
-                          margin: const EdgeInsets.only(top: 30, bottom: 20),
-                          width: context.deviceWidth() / 1.2,
-                          height: context.deviceHeight() / 3,
-                          decoration: BoxDecoration(
-                              color: primaryColorDark,
-                              image: DecorationImage(
-                                image: NetworkImage(image!),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(20)),
-                        ),
-                  Text(
-                    content ?? "",
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      // fontFamily: AppFont.interRegular,
-                      // color: _Colors.textBlack,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => _launchURL(sourceUrl),
-                    child: const Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text("Got to Source Link",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                          )),
-                    ),
-                  ),
-                  const Gap(20)
-                ],
-              )),
-            ])),
+          Text(
+            content ?? "",
+            textAlign: TextAlign.justify,
+            style: const TextStyle(
+              fontSize: 14,
+              // fontFamily: AppFont.interRegular,
+              // color: _Colors.textBlack,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => _launchURL(sourceUrl),
+            child: const Align(
+              alignment: Alignment.bottomRight,
+              child: Text("Got to Source Link",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                  )),
+            ),
+          ),
+          const Gap(20),
+        ]),
       ),
     );
   }

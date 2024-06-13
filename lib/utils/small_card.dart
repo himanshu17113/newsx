@@ -1,20 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/constant/app_colors.dart';
 import 'package:news_app/constant/date_formatter.dart';
 import 'package:news_app/model/newsmodel.dart';
 import 'package:news_app/more_info_news.dart';
 
-class NewsCard extends StatelessWidget {
+class SmallCard extends StatelessWidget {
   final Article article;
 
-  const NewsCard({super.key, required this.article});
+  const SmallCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.all(10),
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) {
@@ -40,9 +40,14 @@ class NewsCard extends StatelessWidget {
                     children: [
                       Text(
                         article.title.toString(),
-                        // style: AppTextStyles
-                        //     .headingMedium2TextBlack
+                        style: theme.textTheme.titleLarge,
                       ),
+                      if (article.description != null) ...[
+                        Text(
+                          article.description.toString(),
+                          style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.onSurface.withOpacity(0.7)),
+                        )
+                      ],
                       const SizedBox(
                         height: 10,
                       ),
@@ -54,20 +59,6 @@ class NewsCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 15),
-                Expanded(
-                  child: article.urlToImage != null
-                      ? Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              image: DecorationImage(image: NetworkImage(article.urlToImage.toString()), fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(20)),
-                        )
-                      : Container(
-                          height: 100,
-                          decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(20)),
-                        ),
-                ),
               ],
             ),
             const Divider()

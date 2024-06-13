@@ -37,7 +37,7 @@ class Cards extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (article.urlToImage!.isNotEmpty) ...[
+              if ((article.urlToImage != null && article.urlToImage!.isNotEmpty)) ...[
                 Container(
                   height: 200,
                   margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),

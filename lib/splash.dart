@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    
+
     Get.lazyPut<SearchxController>(() => SearchxController());
     Get.put(NewsService(), permanent: true);
     _lottieController = AnimationController(vsync: this);
@@ -48,7 +48,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.secondaryContainer,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
