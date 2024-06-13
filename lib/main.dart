@@ -20,17 +20,28 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  static final defaultLightColorScheme = ColorScheme.fromSwatch(primarySwatch: Colors.blue);
+ const MyApp({super.key});
+  // static final defaultLightColorScheme = ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent, brightness: Brightness.light);
 
-  static final defaultDarkColorScheme = ColorScheme.fromSwatch(primarySwatch: Colors.blue, brightness: Brightness.dark);
+  // static final defaultDarkColorScheme = ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent, brightness: Brightness.dark);
   @override
   Widget build(BuildContext context) => DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) => MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'News',
-            theme: ThemeData(colorScheme: lightDynamic ?? defaultLightColorScheme, useMaterial3: true),
-            darkTheme: ThemeData(colorScheme: darkDynamic ?? defaultDarkColorScheme, useMaterial3: true),
+            theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                        seedColor: lightDynamic?.primary ?? Colors.deepPurple,
+                        dynamicSchemeVariant: DynamicSchemeVariant.content,
+                        brightness: Brightness.light)
+                      ,
+                useMaterial3: true),
+            darkTheme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                        seedColor: darkDynamic?.primary ?? Colors.deepPurple,
+                        dynamicSchemeVariant: DynamicSchemeVariant.content,
+                        brightness: Brightness.dark),
+                useMaterial3: true),
             home: const SplashScreen(),
           ));
 }

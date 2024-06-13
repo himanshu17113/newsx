@@ -33,6 +33,22 @@ class NewsService extends GetxController {
     }
   }
 
+  Future<News> fetchCategory(String category) async {
+    try {
+      final response = await dio.get(Apis.getHeadLineBySource(category));
+      final topHeadline = News.fromMap(response.data);
+      if (topHeadline.status == "ok" || topHeadline.articles != null) {
+        generalNews = topHeadline.articles!;
+        update(['generalNews']);
+      }
+      return topHeadline;
+    } on SocketException {
+      throw Exception("please Connect to the internet");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<News> fetchTopHeadline(String country) async {
     try {
       final response = await dio.get(Apis.getHeadlinebyCountry(country));

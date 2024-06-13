@@ -16,7 +16,7 @@ class Cards extends StatelessWidget {
     final TextTheme textTheme = theme.textTheme;
 
     return Card(
-      color: theme.colorScheme.surfaceContainerHighest,
+      // color: theme.colorScheme.surfaceContainerHighest,
       margin: const EdgeInsets.all(5),
       child: GestureDetector(
         onTap: () {
