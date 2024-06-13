@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/constant/app_colors.dart';
 import 'package:news_app/constant/date_formatter.dart';
 import 'package:news_app/model/newsmodel.dart';
 import 'package:news_app/more_info_news.dart';
